@@ -398,7 +398,7 @@ class WP_Bikmo_Products {
      */
 
     public static function deepLink($productUrl) {
-        return (get_option('site-url') ? rtrim(get_option('site-url'), '/') : 'http://search.bikmo.com') . '/buy?' . http_build_query(array('link' => $productUrl));
+        return (get_option('site-url') ? rtrim(get_option('site-url'), '/') : 'http://search.bikmo.com') . '/buy?' . http_build_query(array('clickref' => get_option('clickref') ? get_option('clickref') : 'bikmo', 'link' => $productUrl));
     }
 
     /*
