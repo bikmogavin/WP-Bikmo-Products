@@ -1,0 +1,12 @@
+.bikmo th, .bikmo td{
+	vertical-align: middle;
+}
+.bikmo-sub{
+	margin-bottom: 10px !important;
+}
+#ajax-loader{
+	visibility: hidden;
+}
+#ajax-loader.active{
+	visibility: visible;
+}
