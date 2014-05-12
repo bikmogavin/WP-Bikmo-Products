@@ -20,12 +20,12 @@
                 </p>
             <?php endif; ?>
             <p>
-                <a href="<?php echo WP_Bikmo_Products::linkify($product['manufacturer'], $product['name']); ?>">
+                <a href="<?php echo WP_Bikmo_Products::linkify($product['manufacturer'], $product['name'], $product['_id']); ?>">
                     More Information
                 </a>
             </p> 
             <p>
-                <a href="<?php echo WP_Bikmo_Products::deepLink($product['deep_link']); ?>">
+                <a href="<?php echo WP_Bikmo_Products::deepLink($product['merchants'][0]['merchant_id'], $product['_id']); ?>">
                     Buy Cheapest
                 </a>               
             </p>          

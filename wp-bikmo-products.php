@@ -13,7 +13,7 @@ class WP_Bikmo_Products {
      */
 
     const VERSION = '0.0.1';
-    const MEDIA_SERVER = 'http://media.bikmo.com/';
+    const MEDIA_SERVER = 'http://mediav2.bikmo.com/image/';
 
     /*
      * WPDB instance
@@ -394,20 +394,20 @@ class WP_Bikmo_Products {
     }
 
     /*
-     * Convenience function for adding clickref to links
+     * Convenience function for deeplink
      */
 
-    public static function deepLink($productUrl) {
-        return (get_option('site-url') ? rtrim(get_option('site-url'), '/') : 'http://search.bikmo.com') . '/buy?' . http_build_query(array('clickref' => get_option('clickref') ? get_option('clickref') : 'bikmo', 'link' => $productUrl));
+    public static function deepLink($merchantId, $productId) {
+        return (get_option('site-url') ? rtrim(get_option('site-url'), '/') : 'http://search.bikmo.com') . '/redirect/' . $merchantId . '/' . $productId . '?' . http_build_query(array('clickref' => get_option('clickref') ? get_option('clickref') : 'bikmo'));
     }
 
     /*
      * Convenience function for linking to rcuk product page
      */
 
-    public static function linkify($manufacturer, $name) {
+    public static function linkify($manufacturer, $name, $id) {
         $siteUrl = get_option('site-url') ? get_option('site-url') : 'http://search.bikmo.com';
-        return $siteUrl . '/' . self::link($manufacturer) . '/' . self::link($name);
+        return $siteUrl . '/' . self::link($manufacturer) . '/' . self::link($name) . '-' . $id;
     }
 
     /*
@@ -448,7 +448,7 @@ class WP_Bikmo_Products {
         );
 
         if ($url) {
-            $name = pathinfo($source, PATHINFO_FILENAME);
+            $name = pathinfo($url, PATHINFO_FILENAME);
             $name .= '-' . substr(md5($source), 0, 4);
         } else {
             $name = 'placeholder';
